@@ -1,5 +1,17 @@
 class DiceController < ApplicationController
 
+  def dynamic_dice_roll
+    @num_rolls = params.fetch("num_rolls")
+    @num_faces = params.fetch("num_faces")
+
+    @array_of_rolls = Array.new
+
+    @num_rolls.to_i.times do
+      @array_of_rolls.push(rand(@num_faces.to_i) +1)
+    
+    end    
+    render({:template => "dice_templates/dynamic_dice_roll.html.erb"})
+  end
   def one_six
     @array_of_rolls = Array.new
 
